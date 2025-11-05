@@ -16,7 +16,7 @@ function setupboard() {document.getElementById("timer").innerText="Time: 00:00:0
 
 let timer;
 function gamestart(){
-   clearInterval(timer);//stop the timer
+clearInterval(timer);//stop the timer
 timer=setInterval(()=>{
     time++;
     h=Math.floor(time/3600);
