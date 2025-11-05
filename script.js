@@ -16,7 +16,7 @@ function setupboard() {document.getElementById("timer").innerText="Time: 00:00:0
 
 let timer;
 function gamestart(){
-set
+clearInterval(timer);//stop the timer
 timer=setInterval(()=>{
     time++;
     h=Math.floor(time/3600);
@@ -27,7 +27,7 @@ timer=setInterval(()=>{
     if(s<10) s='0'+s;
   document.getElementById("timer").innerHTML=`Time: ${h}:${m}:${s}`;
   },1000);
-  clearInterval(timer);//stop the timer
+ 
   document.getElementById("btn").innerHTML="Restart";//change button text to restart after first click
   time=0;//reset timer
   moves=0;
