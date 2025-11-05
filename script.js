@@ -1,14 +1,23 @@
-function gamestart(){
-  let timer;
-  clearInterval(timer);//stop the timer
+window.onload = setupboard;
 
-  document.getElementById("btn").innerHTML="Restart";//change button text to restart after first click
-  time=0;//reset timer
-  moves=0;
-  match=0;
-  document.getElementById("timer").innerText="Time: 00:00:00";//reset timer display
+function setupboard() {document.getElementById("timer").innerText="Time: 00:00:00";//reset timer display
   document.getElementById("moves").innerText="Moves: 0";//reset moves display
-  timer=setInterval(()=>{
+  
+  const board = document.getElementById("board");
+  board.innerHTML = ""; // clear board before adding cards
+
+  const totalCards = 16; // example: 16 cards
+  for (let i = 0; i < totalCards; i++) {
+    const card = document.createElement('div'); // create card div
+    card.classList.add('card');
+    board.appendChild(card); // just append it, no innerHTML assignment
+  }
+}
+
+let timer;
+function gamestart(){
+set
+timer=setInterval(()=>{
     time++;
     h=Math.floor(time/3600);
     m=Math.floor(time%3600/60);
@@ -18,6 +27,14 @@ function gamestart(){
     if(s<10) s='0'+s;
   document.getElementById("timer").innerHTML=`Time: ${h}:${m}:${s}`;
   },1000);
+  clearInterval(timer);//stop the timer
+  document.getElementById("btn").innerHTML="Restart";//change button text to restart after first click
+  time=0;//reset timer
+  moves=0;
+  match=0;
+  document.getElementById("timer").innerText="Time: 00:00:00";//reset timer display
+  document.getElementById("moves").innerText="Moves: 0";//reset moves display
+  
      const overlay=document.getElementById("overlay");
       const win=document.getElementById("win");
       overlay.style.display="none";
@@ -26,7 +43,7 @@ let lockBoard=false;//to prevent clicking when two cards are flipped
 let flippedCards=[];//array to hold flipped cards
 const board= document.getElementById("board");//get board element
 board.innerHTML="";//clear board before new game if it is a restart 
-const list=["❤️","🙂","🍕","🍔","🍟","🌭","🍿","🥨","❤️","🙂","🍕","🍔","🍟","🌭","🍿","🥨"];//creating list of elements
+const list=["❤️","🙂","🍕","🍔","🍩","🌭","🍿","🥨","❤️","🙂","🍕","🍔","🍩","🌭","🍿","🥨"];//creating list of elements
 // const list=["❤️","🙂","🍕","❤️","🙂","🍕"];//creating list of elements
 list.sort(()=>Math.floor(Math.random()*list.length)-2);
 list.forEach(item=>{//for each item in the list
@@ -43,10 +60,12 @@ list.forEach(item=>{//for each item in the list
 // when start game-------------------->  
 card.innerHTML=card.dataset.symbol;
 card.classList.add('flipped');
+
 setTimeout(()=>{
 card.innerHTML="";//clear the card content
 card.classList.remove('flipped');
 },1500);
+
 card.addEventListener('click',()=>{//add event listener to each card
   
   if(lockBoard||flippedCards.includes(card)|| card.classList.contains('flipped')) return;//to prevent clicking the same card twice
@@ -93,6 +112,7 @@ if(flippedCards.length==2){
 }
 
 });
+
   board.appendChild(card);//append each card to the board element 
 });
 
